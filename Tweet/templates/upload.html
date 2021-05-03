@@ -1,9 +1,0 @@
-<section id="backend_upload" class="container-fluid">
-  <div class="row justify-content-center">
-    <form class="row g-3" method="post" enctype="multipart/form-data">
-      {% csrf_token %} {{ backend_form }}
-
-      <input class="btn btn-warning form-control" type="submit" value="Tweet" />
-    </form>
-  </div>
-</section>
