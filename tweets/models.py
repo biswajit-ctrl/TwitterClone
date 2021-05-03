@@ -1,7 +1,5 @@
 from django.db import models
-from django.db import models
 from cloudinary.models import CloudinaryField
-from django.utils import timezone
 
 # Create your models here.
 

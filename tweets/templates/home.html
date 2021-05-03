@@ -11,19 +11,15 @@
 
     <!-- Bootstrap CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       type="text/css"
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
 
     <!-- Google Fonts -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'Tweet/fonts/google-fonts.css' %}"
-    />
+    <link type="text/css" href="{% static 'Tweet/fonts/google-fonts.css' %}" />
     <!-- Copy the entire font-awesome directory(4.7.0 version) into our project. -->
     <link
       rel="stylesheet"
@@ -32,11 +28,7 @@
     />
 
     <!-- Linking style.css -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'Tweet/style.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'Tweet/style.css' %}" />
   </head>
 
   <body>
@@ -92,25 +84,14 @@
                     <div class="col-10">
                       <div class="user_details">
                         <a href="#">
-                          <span class="user_name">
-                            {{ tweet.name }}
-                          </span>
-                          <span class="datetime">
-                            {{tweet.updated_at}}
-                          </span>
+                          <span class="user_name"> {{ tweet.name }} </span>
+                          <span class="datetime"> {{ tweet.updated_at }} </span>
                         </a>
                       </div>
                       <div class="card-title">
                         <p id="caption">{{ tweet.body }}</p>
                       </div>
                     </div>
-
-                    <!-- <div class="col-6">
-                    <p>
-                      The tweet id {{ tweet.id }} is created at:
-                      {{tweet.created_at}}
-                    </p>
-                  </div> -->
                   </div>
                 </div>
               </div>
@@ -123,12 +104,12 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-6">
-                      <p style="font-weight: bold;">
+                      <p style="font-weight: bold">
                         like: {{ tweet.like_count }}
                       </p>
                     </div>
                     <div class="col-6">
-                      <p>Last updated at: {{tweet.updated_at}}</p>
+                      <p>Last updated at: {{ tweet.updated_at }}</p>
                     </div>
                   </div>
                 </div>
@@ -137,14 +118,14 @@
               <div class="card-footer">
                 <ul class="nav nav-pills">
                   <li class="nav-item like">
-                    <a href="{{ tweet.id}}/like/"
+                    <a href="{{ tweet.id }}/like/"
                       ><button id="like" type="button" class="nav-link active">
                         Like
                       </button></a
                     >
                   </li>
                   <li class="nav-item dislike">
-                    <a href="{{ tweet.id}}/dislike/"
+                    <a href="{{ tweet.id }}/dislike/"
                       ><button
                         id="dislike"
                         type="button"

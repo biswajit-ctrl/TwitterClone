@@ -1,1 +1,2 @@
-web: gunicorn twitter_clone_project.wsgi
+release: python manage.py migrate
+web: gunicorn twitter_clone.wsgi
