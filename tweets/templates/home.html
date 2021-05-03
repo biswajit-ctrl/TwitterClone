@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Twitter like Django Web Application</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      type="text/css"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts -->
+    <link type="text/css" href="{% static 'Tweet/fonts/google-fonts.css' %}" />
+    <!-- Copy the entire font-awesome directory(4.7.0 version) into our project. -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Linking style.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Tweet/style.css' %}" />
+  </head>
+
+  <body>
+    <div class="container-xxl">
+      <!-- header section starts -->
+      <header id="header" class="nav-bar">
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="“#news”">News</a></li>
+            <li><a href="admin">Admin</a></li>
+          </ul>
+        </nav>
+
+        <div class="fa fa-caret-square-o-down" aria-hidden="true"></div>
+
+        <a class="logo" aria-hidden="true">
+          <img src="{% static 'Tweet/img/logo.png' %}" alt="Logo" />
+        </a>
+      </header>
+      <!-- header section ends -->
+
+      <!-- home starts from here -->
+      <section id="home" class="container-sm">
+        <div class="content">
+          {% load cloudinary %}
+
+          <!-- tweet upload section starts here -->
+          <div class="card-container container-fluid text-center">
+            <div class="card">
+              {% block content %} {% include 'upload.html' %} {% endblock %}
+            </div>
+          </div>
+          <!-- tweet upload section ends here -->
+
+          <!-- card starts here -->
+          <div class="card-container container-fluid text-center">
+            {% for tweet in tweets %} {% if tweet.hidden == False %}
+            <div class="card">
+              <div class="card-header">
+                <div class="container">
+                  <div class="row align-items-center">
+                    <div class="col-2">
+                      <div class="user_icon">
+                        <a href="#">
+                          <img
+                            src="{% static 'Tweet/img/icon.jpg' %}"
+                            alt="User"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-10">
+                      <div class="user_details">
+                        <a href="#">
+                          <span class="user_name"> {{ tweet.name }} </span>
+                          <span class="datetime"> {{ tweet.updated_at }} </span>
+                        </a>
+                      </div>
+                      <div class="card-title">
+                        <p id="caption">{{ tweet.body }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="“card-body”">
+                {% if tweet.image %}
+                <img src="{{ tweet.image.url }}" />
+                {% endif %}
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-6">
+                      <p style="font-weight: bold">
+                        like: {{ tweet.like_count }}
+                      </p>
+                    </div>
+                    <div class="col-6">
+                      <p>Last updated at: {{ tweet.updated_at }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <ul class="nav nav-pills">
+                  <li class="nav-item like">
+                    <a href="{{ tweet.id }}/like/"
+                      ><button id="like" type="button" class="nav-link active">
+                        Like
+                      </button></a
+                    >
+                  </li>
+                  <li class="nav-item dislike">
+                    <a href="{{ tweet.id }}/dislike/"
+                      ><button
+                        id="dislike"
+                        type="button"
+                        class="nav-link active"
+                      >
+                        Dislike
+                      </button></a
+                    >
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ tweet.id }}/edit"
+                      ><button type="button" class="nav-link active">
+                        Edit
+                      </button></a
+                    >
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ tweet.id }}/delete"
+                      ><button type="button" class="nav-link active">
+                        Delete
+                      </button></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {% endif %} {% endfor %}
+          </div>
+          <!-- card ends here -->
+        </div>
+      </section>
+      <!-- main ends here  -->
+    </div>
+
+    <!-- Importing jquery and bootstrap -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'Tweet/index.js' %}"></script>
+  </body>
+</html>
